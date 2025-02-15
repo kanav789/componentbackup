@@ -1,169 +1,105 @@
-import React from "react";
-import menu from "../assets/customerDashboard/menukabab.svg";
-import reactangle from "../assets/customerDashboard/rectangle.svg";
+import "../../App.css";
 
-const orders = [
-  {
-    id: "#85624023",
-    date: "02/02/2025",
-    time: "06:40 PM",
-    customerName: "Mr Pranav Kumar",
-    phone: "+91 8077572537",
-    category: "Electronics",
-    product: "Mobile Phone",
-    deadWeight: "0.6 Kg",
-    dimensions: "15 x 6 x 10 (cm)",
-    volumetricWeight: "0.180 Kg",
-    payment: "Prepaid",
-    pickupAddress: "Home",
-    shippingStatus: "E Way Bill Required",
-  },
-  {
-    id: "#123456",
-    date: "02/02/2025",
-    time: "06:40 PM",
-    customerName: "Mr Pranav Kumar",
-    phone: "+91 8077572537",
-    category: "Electronics",
-    product: "Mobile Phone",
-    deadWeight: "0.6 Kg",
-    dimensions: "15 x 6 x 10 (cm)",
-    volumetricWeight: "0.180 Kg",
-    payment: "Prepaid",
-    pickupAddress: "Home",
-    shippingStatus: "E Way Bill Required",
-  },
-  {
-    id: "#7676582",
-    date: "02/02/2025",
-    time: "06:40 PM",
-    customerName: "Mr Pranav Kumar",
-    phone: "+91 8077572537",
-    category: "Electronics",
-    product: "Mobile Phone",
-    deadWeight: "0.6 Kg",
-    dimensions: "15 x 6 x 10 (cm)",
-    volumetricWeight: "0.180 Kg",
-    payment: "Prepaid",
-    pickupAddress: "Home",
-    shippingStatus: "E Way Bill Required",
-  },
-];
+import { Input } from "antd";
+import search from "../../assets/customerDashboard/search.svg";
 
-const OrderTable: React.FC = () => {
+import filter from "../../assets/customerDashboard/filter.svg";
+import sync from "../../assets/customerDashboard/sync.svg";
+import OrderTable from "./OrderTable";
+import { useNavigate } from "react-router-dom";
+
+const CustomerOrder=()=> {
+  const navigate=useNavigate()
   return (
-    <div>
-      {/* Table contents */}
-      <div className="">
-        <div className="border border-[#5D4BFE] w-full flex items-center  justify-between p-3 rounded-2xl font bg-[#FFFEFE] text-sm">
-          <div className="flex gap-3 items-center">
-            <img src={reactangle} alt="" />
-            <h2>Order Details</h2>
-          </div>
-          <div>
-            <h2>Customer Details</h2>
-          </div>
-          <div>
-            <h2>Product Details</h2>
-          </div>
-          <div>
-            <h2>Package Details</h2>
-          </div>
-          <div>
-            <h2>Payment </h2>
-          </div>
-          <div>
-            <h2>Pickup Address</h2>
-          </div>
-          <div>
-            <h2>Shipping Status </h2>
-          </div>
-          <div>
-            <h2>Action</h2>
-          </div>
-          <div>
-            <h2></h2>
+    <div className=" font">
+      {/* header  */}
+
+
+      {/* dashboard  */}
+
+      <div>
+        {/* blue banner  */}
+        <div className="bg-blue-600 mt-4 flex justify-center rounded-xl ">
+          <h3 className="text-[#FFFFFF] p-2 font text-[13px] font-semibold">
+            Todays Offer, Recharge your wallet now and get 25% of your total
+            recharge amount
+          </h3>
+        </div>
+        {/*  inputs */}
+
+        <div>
+          <div className="flex justify-between items-center mt-3">
+            {/* search  */}
+            <div className="bg-[#FFFFFF] flex gap-2 border border-[#5D4BFE] rounded-xl mt-4 px-5 py-2  items-center w-2/4 ">
+              <img className="w-[34px]" src={search} alt="" />
+              <Input
+                size="large"
+                placeholder="Search Shipment from AWB, Buyer Mobile No, Order Id, Email, Pickup Id"
+                className="border-none outline-none active:border-none font"
+              />
+            </div>
+            {/* buttons */}
+
+            <div className="flex gap-2">
+              <div className="flex gap-1 justify-center items-center border bg-[#5D4BFE] border-[#5D4BFE] rounded-2xl px-3 py-1 font cursor-pointer ">
+                <div className="text-[20px] text-white">+</div>
+                <h3 className="text-sm text-[#fff] font-semibold cursor-pointer mt-[4px]" onClick={()=>{navigate('/createOrder')}}>
+                  Create Order
+                </h3>
+              </div>
+              {/* Filter Order  */}
+              <div className="flex gap-1 justify-center items-center border border-[#5D4BFE] rounded-2xl px-3 py-2 font cursor-pointer ">
+                <img className="w-[15px]" src={filter} alt="" />
+                <h3 className="text-sm text-[#5D4BFE] font-semibold cursor-pointe mt-[4px]r">
+                  Filter Order
+                </h3>
+              </div>
+              {/* Sync order */}
+              <div className="flex gap-1 justify-center items-center border border-[#5D4BFE] rounded-2xl px-3 py-2 font cursor-pointer ">
+                <img className="w-[15px]" src={sync} alt="" />
+                <h3 className="text-sm text-[#5D4BFE] font-semibold cursor-pointer mt-[4px]">
+                  Sync Order
+                </h3>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-      {/* table  */}
-      <div className="">
-        {orders.map((order, index) => (
-          <div
-            className="border border-[#5D4BFE] w-full flex my-5  justify-between p-3 rounded-2xl font bg-[#FFFEFE] text-sm shadow-2xl"
-            key={index}
-          >
-            <div className="flex gap-8 items-center">
-              <div></div>
-              <div className="flex flex-col   w-[130px] flex-wrap">
-                <h2 className="text-[#5D4BFE] text-sm">{order.id}</h2>
-                <h2 className="text-[#23232380] text-sm">
-                  {order.date} {order.time}
-                </h2>
-              </div>
-            </div>
-            <div>
-              {/* customer details */}
-              <div className="flex flex-col g w-[130px] flex-wrap">
-                <h2 className="text-[#232323]">{order.customerName}</h2>
-                <h2 className="text-[#23232380]">{order.phone}</h2>
-              </div>
-            </div>
-            {/* product Details */}
-            <div>
-              <div className="flex flex-col  w-[130px] flex-wrap">
-                <h2 className="text-[#232323]">{order.category}</h2>
-                <h2 className="text-[#23232380]">{order.product}</h2>
-              </div>
-            </div>
-            {/* package Details */}
-            <div>
-              <div className="flex flex-col  items-center  w-[130px] flex-wrap">
-                <h2 className="text-[#232323]">
-                  <span className="text-[11px] font-bold">DeadWeight:</span>{" "}
-                  {order.deadWeight}
-                </h2>
-                <h2 className="text-[#23232380]">{order.dimensions}</h2>{" "}
-                <h2 className="text-[#23232380]">{order.volumetricWeight}</h2>
-              </div>
-            </div>
-            {/* payment  */}
-            <div>
-              <div className="flex flex-col items-center  w-[130px] flex-wrap">
-                <h2 className="text-[#232323]">{order.payment}</h2>
-              </div>
-            </div>
-            {/* Addres pickup */}
-            <div>
-              <div className="flex flex-col items-center  w-[130px] flex-wrap">
-                <h2 className="text-[#232323]">{order.pickupAddress}</h2>
-              </div>
-            </div>
 
-            {/* shipping status  */}
-            <div>
-              <div className="flex flex-col gap-1   flex-wrap">
-                <h2 className="text-[#FF0000]">{order.shippingStatus}</h2>
-              </div>
-            </div>
-            {/* Action  */}
-            <div>
-              <div className="">
-                <button className="bg-[#1900FF] text-white px-2  py-1 rounded-lg">
-                  Ship Now
-                </button>
-              </div>
-            </div>
-            <div>
-              <div>
-                <img src={menu} alt="" />
-              </div>
-            </div>
+        {/*  */}
+
+        <div className="flex gap-4 my-5">
+          <div>
+            <h4 className="text-[#5D4BFE] font-semibold text-sm">New Orders</h4>
           </div>
-        ))}
+          <div>
+            <h4 className="text-[#3D3D3D] font-semibold text-sm">
+              Ready to ship
+            </h4>
+          </div>
+          <div>
+            <h4 className="text-[#3D3D3D] font-semibold text-sm">
+              Pickup Pending
+            </h4>
+          </div>
+          <div>
+            <h4 className="text-[#3D3D3D] font-semibold text-sm">In Transit</h4>
+          </div>
+          <div>
+            <h4 className="text-[#3D3D3D] font-semibold text-sm">Delivered</h4>
+          </div>
+          <div>
+            <h4 className="text-[#3D3D3D] font-semibold text-sm">RTO</h4>
+          </div>
+        </div>
+
+        {/*  table contents*/}
+
+        <div>
+          <OrderTable />
+        </div>
       </div>
     </div>
   );
-};
+}
 
-export default OrderTable;
+export default CustomerOrder;
